@@ -2,7 +2,7 @@ using PresupuestosDetalles;
 
 namespace Presupuestos
 {
-    class Presupuesto
+    public class Presupuesto
     {
         private int idPresupuesto;
         private string nombreDestinatario;
@@ -17,6 +17,6 @@ namespace Presupuestos
             this.detalle = new List<PresupuestosDetalle>();
         }
 
-        
+
     }
 }

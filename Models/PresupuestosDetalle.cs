@@ -1,13 +1,13 @@
-using Producto;
+using Productos;
 
 namespace PresupuestosDetalles
 {
-    class PresupuestosDetalle
+    public class PresupuestosDetalle
     {
-        private Productos producto;
+        private Producto producto;
         private int cantidad;
 
-        public Productos Proucto {get=>producto; set=>producto=value;}
+        public Producto Proucto {get=>producto; set=>producto=value;}
         public int Cantidad {get=>cantidad; set=>cantidad=value;}
     }    
 }
