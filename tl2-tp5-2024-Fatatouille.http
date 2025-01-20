@@ -1,0 +1,6 @@
+@tl2_tp5_2024_Fatatouille_HostAddress = http://localhost:5117
+
+GET {{tl2_tp5_2024_Fatatouille_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
