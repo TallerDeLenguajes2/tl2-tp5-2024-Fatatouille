@@ -72,10 +72,45 @@ public class ProductoRepository : IProductoRepository
     }
     public Producto DetallesProducto(int id)
     {
-        
+        string query = "SELECT * FROM Productos WHERE idProducto=@id";
+        Producto producto = null;
+
+        using (SqliteConnection conexion = new SqliteConnection(_cadenaDeConexion))
+        {
+            conexion.Open();
+            SqliteCommand command = new SqliteCommand(query, conexion);
+            command.Parameters.Add(new SqliteParameter("@id", id));
+
+            using (SqliteDataReader reader = command.ExecuteReader())
+            {
+                if(reader.Read())
+                {
+                    producto = new Producto
+                    {
+                        IdProducto= Convert.ToInt32(reader["idProducto"]),
+                        Descripcion = reader["Descripcion"].ToString(),
+                        Precio = Convert.ToInt32(reader["Precio"])
+                    };
+                }
+            }
+            conexion.Close();
+        }
+
+        return producto;
     }
     public bool EliminarProducto(int id)
     {
-
+        string query = "DELETE FROM Productos WHERE idProducto=@IdProducto";
+        int cantidad_filas = 0;
+        
+        using (SqliteConnection conexion = new SqliteConnection(_cadenaDeConexion))
+        {
+            conexion.Open();
+            SqliteCommand command = new SqliteCommand(query, conexion); 
+            command.Parameters.Add(new SqliteParameter("@IdProducto", id));
+            cantidad_filas = command.ExecuteNonQuery();
+            conexion.Close();
+        }
+        return cantidad_filas >0;
     }
 }
